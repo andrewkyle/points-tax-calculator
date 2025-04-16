@@ -6,7 +6,7 @@ from app.models.tax_bracket import TaxBracket
 
 
 class TaxBrackets(BaseModel):
-    """A class used to represent a list of tax brackets."""
+    """A model used to represent a list of tax brackets."""
 
     tax_brackets: list[TaxBracket]
 
@@ -18,7 +18,7 @@ class TaxBrackets(BaseModel):
 
         :param amount: Amount to compute tax against.
         :type amount: Decimal
-        :return: Total tax, effective tax rates and marginal taxes.
+        :return: Total tax, effective tax rate and marginal taxes.
         :rtype: tuple[Decimal, Decimal, list[Decimal]]
         """
 
@@ -26,7 +26,7 @@ class TaxBrackets(BaseModel):
             bracket.marginal_tax(amount) for bracket in self.tax_brackets
         ]
 
-        total_tax = sum(marginal_taxes)
+        total_tax = Decimal(sum(marginal_taxes))
 
         effective_tax_rate = Decimal(0) if amount <= 0 else total_tax / amount
 

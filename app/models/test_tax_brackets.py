@@ -2,19 +2,7 @@ from decimal import Decimal
 
 import pytest
 
-from app.models.tax_bracket import TaxBracket
 from app.models.tax_brackets import TaxBrackets
-
-
-@pytest.fixture
-def tax_brackets():
-    return TaxBrackets(
-        tax_brackets=[
-            TaxBracket(min=0, max=10000, rate=0.15),
-            TaxBracket(min=10000, max=20000, rate=0.25),
-            TaxBracket(min=20000, rate=0.35),
-        ],
-    )
 
 
 class TestTaxBrackets:
@@ -31,7 +19,7 @@ class TestTaxBrackets:
     )
     def test_compute_tax(
         self,
-        tax_brackets: TaxBrackets,
+        tax_brackets1: TaxBrackets,
         amount,
         expected_marginal_taxes,
     ):
@@ -45,7 +33,7 @@ class TestTaxBrackets:
         else:
             expected_effective_tax_rate = expected_total_tax / amount
 
-        assert tax_brackets.compute_tax(amount) == (
+        assert tax_brackets1.compute_tax(amount) == (
             expected_total_tax,
             expected_effective_tax_rate,
             expected_marginal_taxes,

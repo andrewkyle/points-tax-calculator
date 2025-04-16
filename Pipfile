@@ -12,6 +12,7 @@ pytest = "*"
 flake8 = "*"
 isort = "*"
 black = "*"
+pytest-mock = "*"
 
 [requires]
 python_version = "3.13"

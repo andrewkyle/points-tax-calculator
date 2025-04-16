@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 
 class TaxCalculatorRequest(BaseModel):
-    """A class used to represent a tax calculator request."""
+    """A model used to represent a tax calculator request."""
 
     tax_year: int
     yearly_salary: Decimal

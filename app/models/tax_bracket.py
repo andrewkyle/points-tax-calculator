@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 
 class TaxBracket(BaseModel):
-    """A class used to represent a tax bracket."""
+    """A model used to represent a tax bracket."""
 
     min: int
     max: Optional[int] = None
