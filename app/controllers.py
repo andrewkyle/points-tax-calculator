@@ -37,6 +37,8 @@ def fetch_tax_brackets(tax_year: int) -> TaxBrackets:
             response = _fetch_tax_brackets(url, s.tax_year_timeout)
         except httpx.TimeoutException:
             continue  # Retry if timed out.
+        except httpx.ConnectError:
+            continue  # Retry if cannot connect.
 
         match response.status_code:
             case httpx.codes.OK:
